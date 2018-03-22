@@ -1,0 +1,16 @@
+{
+  "name": "event-horizon",
+  "version": "1.0.0",
+  "description": "Event Horizon is a design prototype of an events website where users can explore event posted by event managers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Event",
+    "Prototype",
+    "Design"
+  ],
+  "author": "Alexander Cherry",
+  "license": "ISC"
+}
