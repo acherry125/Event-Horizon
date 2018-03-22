@@ -1,0 +1,11 @@
+@import "./normalize.scss";
+
+// VARIABLES 
+$unit: 4px;
+$body-size: $unit * 4;
+$max-content-area-size: $body-size * 70;
+
+.content-area {
+    max-width: $max-content-area-size;
+    margin: 0 auto;
+}
