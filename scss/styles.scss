@@ -1,11 +1,289 @@
 @import "./normalize.scss";
 
+// COLORS
+$teal: #71D3D3;
+$blue: #306A82;
+$pale-blue: #AACECA;
+$green: #A4D555;
+$pink: #F14F62;
+$red: #693B54;
+$neutral: #EFEFEF;
+$gray: #D3D3D3;
+$dark-gray: mix($gray, black, 70);
+
+$gray-copy: mix($neutral, #000000, 43);
 // VARIABLES 
 $unit: 4px;
 $body-size: $unit * 4;
-$max-content-area-size: $body-size * 70;
+
+$content-area-max-w: $body-size * 70;
+$content-area-vert-p: 0;
+$content-area-side-p: $body-size;
+
+$search-box-height: 35px;
+
+$header-height: $unit * 16;
+
+%cta {
+    height: $search-box-height;
+    background-color: $blue;
+    border: 0;
+    color: #ffffff;
+}
+
+%unstyled-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-size: $body-size;
+    font-family: Roboto;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: Lato;
+}
+
+.main-area {
+    width: 100%;
+    background-color: $neutral;
+    color: $gray-copy;
+    min-height: calc(100vh - #{$header-height});
+    display: flex;
+    flex-flow: column nowrap;
+}
 
 .content-area {
-    max-width: $max-content-area-size;
+    max-width: $content-area-max-w;
+    padding: $content-area-vert-p $content-area-side-p;
+    // center the content
     margin: 0 auto;
+}
+
+.nav {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: $header-height;
+    width: 100%;
+    max-width: $content-area-max-w * 2;
+    margin: 0 auto;
+    padding: 0 $unit;
+    .nav__logo {
+        @extend %unstyled-link;
+        font-size: 1.5rem;
+        font-family: Lato;  
+    }
+    .nav__links {
+        @extend %unstyled-link;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        .nav__links__link {
+            margin: 0 3rem;
+            border-bottom: 1px solid $teal;
+        }
+    }
+}
+
+.search-wrapper {
+    color: $neutral;
+}
+
+.search {
+    display: flex;
+    flex-flow: column nowrap;
+    .search__text {
+        display: flex;
+        flex-flow: column nowrap;
+        margin: 3*$unit 0;
+        .search__text__in {
+            max-width: 80 * $unit;
+            padding: 0 4*$unit;
+            height: $search-box-height;
+            border: 1px solid $pale-blue;
+        }
+    }
+    .search__text__submit {
+        @extend %cta;
+    }
+}
+
+$revolve-height: 500px;
+$sun-diameter: 120px;
+.revolving {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: stretch;
+    width: 100%;
+    height: 500px;
+    .anim__sky {
+        height: 50%;
+        background: $teal;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        align-items: center;
+        animation: sky 4s infinite;
+        .anim__sky__sun {
+            margin-left: 60px;
+            width: $sun-diameter;
+            height: $sun-diameter;
+            background: mix($green, yellow, 0.6);
+            border-radius: 100%;
+            animation: sun 4s infinite;
+        }
+        .anim__strip {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-end;
+            align-self: flex-start;
+            margin-left: 100px;
+            transform: translateY(-5px);
+            animation: rising-building 4s infinite;
+            .anim__strip__tent {
+                width: 125px;
+                height: 63px;
+                margin-right: 10px;
+                position: relative;
+                .tri:first-child {
+                    width: 0;
+                    height: 0;
+                    position: absolute;
+                    border-top: 30px solid transparent;
+                    border-bottom: 19px solid transparent;
+                    border-right: 31px solid white;
+                    transform: rotateZ(-135deg);
+                    top: 4px;
+                    left: -9px;
+                }
+                .rect {
+                    width: 80%;
+                    height: 35px;
+                    position: absolute;
+                    top: 0;
+                    left: 10%;
+                    background: white;
+                }
+                .tri:nth-child(3) {
+                    width: 0;
+                    height: 0;
+                    position: absolute;
+                    border-top: 30px solid transparent;
+                    border-bottom: 19px solid transparent;
+                    border-right: 31px solid white;
+                    transform: rotateZ(-225deg) rotateY(180deg);
+                    top: 4px;
+                    right: -9px;
+                }
+                .pole {
+                    position: absolute;
+                    bottom: 0;
+                    width: 5px;
+                    height: 28px;
+                    background: $gray-copy;
+                }
+                .pole:nth-child(5) {
+                    left: 15px;
+                }
+                .pole:nth-child(6) {
+                    right: 15px;
+                }
+                .pole:nth-child(7) {
+                    right: 0px;
+                }
+                .building {
+                    position: absolute;
+                    top: 64px;
+                    left: -30%;
+                    height: 120px;
+                    width: 160%;
+                    background: $dark-gray;
+                }
+            }
+        }
+    }
+    .anim__ground {
+        z-index: 2;
+        height: 50%;
+        background: $red;
+        animation: ground 4s infinite;
+    }
+}
+
+@keyframes rising-building {
+    0% {
+        transform: translateY(-120px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(-120px);
+    }
+}
+
+@keyframes sky {
+    0% {
+        background: black;
+    }
+    50% {
+        background: $teal;
+    }
+    100% {
+        background: $blue;
+    }
+}
+
+@keyframes sun {
+    0% {
+        transform: translateX(-150px) translateY($revolve-height / 2);
+    }
+    50% {
+        transform: translateX(0) translateY(10px);
+    }
+    100% {
+        transform: translateX(150px) translateY($revolve-height / 2 + 10);
+    }
+}
+
+@keyframes ground {
+    0% {
+        background: $red;
+    }
+    50% {
+        background: $pink;
+    }
+    100% {
+        background: $red;
+    }
+}
+
+
+@media only screen and (min-width: 35em) {
+    .nav {
+        flex-flow: row nowrap;
+        .nav__logo {
+            margin: 0 2rem;
+        }
+        .nav__links {
+            flex-flow: row nowrap;
+        }
+    }
+    .search {
+        flex-flow: row nowrap;
+        align-items: flex-end;
+        .search__text {
+            margin: 0;
+        }
+    }
 }
