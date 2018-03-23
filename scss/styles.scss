@@ -80,6 +80,10 @@ h1,h2,h3,h4,h5,h6 {
         @extend %unstyled-link;
         font-size: 1.5rem;
         font-family: Lato;  
+        img {
+            display: block;
+            width: 15rem;
+        }
     }
     .nav__links {
         @extend %unstyled-link;
