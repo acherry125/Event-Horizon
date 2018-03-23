@@ -166,7 +166,10 @@ $sun-diameter: 120px;
             justify-content: flex-start;
             align-items: flex-end;
             align-self: flex-start;
-            margin-left: 100px;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 2rem;
+            margin: 0 auto;
             transform: translateY(-5px);
             animation: rising-building 4s infinite;
             .anim__strip__tent {
