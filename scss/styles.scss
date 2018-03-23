@@ -71,7 +71,7 @@ h1,h2,h3,h4,h5,h6 {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-between;
-    height: $header-height;
+    min-height: $header-height;
     width: 100%;
     max-width: $content-area-max-w * 2;
     margin: 0 auto;
@@ -85,8 +85,10 @@ h1,h2,h3,h4,h5,h6 {
         @extend %unstyled-link;
         display: flex;
         flex-flow: column nowrap;
-        justify-content: flex-start;
+        justify-content: space-around;
         align-items: center;
+        height: 45px;;
+        margin: 10px 0;
         .nav__links__link {
             margin: 0 3rem;
             border-bottom: 1px solid $teal;
@@ -96,6 +98,11 @@ h1,h2,h3,h4,h5,h6 {
 
 .search-wrapper {
     color: $neutral;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    h1, h2, h3 {
+        margin-top: 0;
+    }
 }
 
 .search {
@@ -106,7 +113,7 @@ h1,h2,h3,h4,h5,h6 {
         flex-flow: column nowrap;
         margin: 3*$unit 0;
         .search__text__in {
-            max-width: 80 * $unit;
+            max-width: 140 * $unit;
             padding: 0 4*$unit;
             height: $search-box-height;
             border: 1px solid $pale-blue;
@@ -114,6 +121,7 @@ h1,h2,h3,h4,h5,h6 {
     }
     .search__text__submit {
         @extend %cta;
+        margin-bottom: 1rem;
     }
 }
 
@@ -124,7 +132,15 @@ $sun-diameter: 120px;
     flex-flow: column nowrap;
     justify-content: stretch;
     width: 100%;
-    height: 500px;
+    overflow: hidden;
+    min-height: calc(100vh - 64px);
+    .content-area {
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
     .anim__sky {
         height: 50%;
         background: $teal;
@@ -284,6 +300,16 @@ $sun-diameter: 120px;
         align-items: flex-end;
         .search__text {
             margin: 0;
+            &:nth-child(2) {
+                margin-left: 1rem;
+            }
         }
+        .search__text__submit {
+            margin-bottom: 0;
+        }
+    }
+    .revolving {
+        min-height: auto;
+        height: 400px;
     }
 }
