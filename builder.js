@@ -53,7 +53,14 @@ function buildSass() {
             fsError ? console.log('write file ERROR:', fsError) : console.log('style.css created');
         });
     } catch (error) {
-        error.formatted ? console.log(error.formatted) : console.log(error);
+        if (error.formatted) {
+            console.log(error.formatted)
+        } else {
+            console.log(error)
+        }        
+        if (error.formatted.split(' ')[0] === "Internal") {
+            buildSass();
+        }
     }
 }
 
